@@ -37,14 +37,15 @@ def save_excel(_FILENAME, _DATA, _HEADER):
 def mkdir(_foldername):
     if not os.path.isdir("{}/".format(_foldername)):
         os.mkdir(_foldername)
-        log('s',"폴더가 존재하지 않아 생성 되었습니다.")
+        log('i',"폴더가 존재하지 않아 프로그램에 지장이 생길수도 있습니다.")
 
 if __name__ == "__main__":
-    # === CONFIG
+    '''------------- INPUT YOUR CONFIG ------------------'''
     srcFolder = "데이터" #이름만
     dstFolder = "완료"
     HEADER = ['piid id','branch','generic.name','generic.name.e']
     FILENAME = '결과.xlsx'
+    '''--------------------------------------------------'''
     # === Global Var
     dataList = []
 
