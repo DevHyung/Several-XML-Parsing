@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-import os
+import os, shutil
 from openpyxl import Workbook, load_workbook
 def log(tag, text):
 	# Info tag
@@ -84,4 +84,5 @@ if __name__ == "__main__":
         for ppid in ppidList:
             dataList.append([ppid.split(',')[0],ppid.split(',')[1],name,nameE])
         log('s',"{} 파일 완료".format(file))
+        shutil.move("./{}/{}".format(srcFolder,file), "./{}/".format(dstFolder))
     save_excel(FILENAME, dataList, None)  # init
