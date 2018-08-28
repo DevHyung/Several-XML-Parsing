@@ -11,6 +11,7 @@ def log(tag, text):
 	# Success tag
 	elif(tag == 's'):
 		print("[SUCCESS] " + text)
+
 def save_excel(_FILENAME, _DATA, _HEADER):
     if os.path.exists(_FILENAME):
         if _DATA == None:
@@ -32,8 +33,6 @@ def save_excel(_FILENAME, _DATA, _HEADER):
         sheet.column_dimensions['B'].width = 20
         sheet.column_dimensions['C'].width = 20
         sheet.column_dimensions['D'].width = 20
-        sheet.column_dimensions['E'].width = 20
-        sheet.column_dimensions['F'].width = 40
         book.save(_FILENAME)
 def mkdir(_foldername):
     if not os.path.isdir("{}/".format(_foldername)):
@@ -74,9 +73,6 @@ if __name__ == "__main__":
                 if child.tag == 'piid':
                     ppidList.append(child.get('id')+','+child.get('branch'))
         # 전처리
-        if name == '':
-            log('e',"No Name")
-
         # 저장
         if len(dataList) >= 10: # 중간 저장
             save_excel(FILENAME, dataList, None)  # init
