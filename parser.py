@@ -62,14 +62,14 @@ if __name__ == "__main__":
         root = f.getroot()
         ppidList = []
         name = ''
-        nameE = ''
+        nameEList  = []
         # parsing
         for parent in root.getiterator():
             for child in parent:
                 if child.tag == 'generic.name':
                     name = child.text
                 if child.tag == 'generic.name.e':
-                    nameE = child.text
+                    nameEList.append(child.text)
                 if child.tag == 'piid':
                     ppidList.append(child.get('id')+','+child.get('branch'))
         # 전처리
@@ -78,7 +78,8 @@ if __name__ == "__main__":
             save_excel(FILENAME, dataList, None)  # init
             dataList.clear()
         for ppid in ppidList:
-            dataList.append([ppid.split(',')[0],ppid.split(',')[1],name,nameE])
+            for nameE in nameEList:
+                dataList.append([ppid.split(',')[0],ppid.split(',')[1],name,nameE])
         log('s',"{} 파일 완료".format(file))
         shutil.move("./{}/{}".format(srcFolder,file), "./{}/".format(dstFolder))
     save_excel(FILENAME, dataList, None)  # init
