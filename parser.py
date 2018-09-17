@@ -33,6 +33,7 @@ def save_excel(_FILENAME, _DATA, _HEADER):
         sheet.column_dimensions['B'].width = 20
         sheet.column_dimensions['C'].width = 20
         sheet.column_dimensions['D'].width = 20
+        sheet.column_dimensions['E'].width = 20
         book.save(_FILENAME)
 def mkdir(_foldername):
     if not os.path.isdir("{}/".format(_foldername)):
@@ -43,7 +44,7 @@ if __name__ == "__main__":
     # === CONFIG
     srcFolder = "데이터" #이름만
     dstFolder = "완료"
-    HEADER = ['piid id','branch','generic.name','generic.name.e']
+    HEADER = ['piid id','branch','generic.name','generic.name.e','generic.name.e']
     FILENAME = '결과.xlsx'
     # === Global Var
     dataList = []
@@ -78,8 +79,7 @@ if __name__ == "__main__":
             save_excel(FILENAME, dataList, None)  # init
             dataList.clear()
         for ppid in ppidList:
-            for nameE in nameEList:
-                dataList.append([ppid.split(',')[0],ppid.split(',')[1],name,nameE])
+            dataList.append([ppid.split(',')[0],ppid.split(',')[1],name]+nameEList)
         log('s',"{} 파일 완료".format(file))
         shutil.move("./{}/{}".format(srcFolder,file), "./{}/".format(dstFolder))
     save_excel(FILENAME, dataList, None)  # init
